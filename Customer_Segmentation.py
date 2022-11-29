@@ -27,6 +27,7 @@ np.random.seed(555)
 # In[16]:
 
 
+# load data
 df = pd.read_csv("AMS325_marketing_campaign.csv")
 df
 
@@ -34,12 +35,14 @@ df
 # In[17]:
 
 
+# look for information about the dataset
 df.info()
 
 
 # In[18]:
 
 
+# drop missing values
 df = df.dropna()
 df
 
@@ -47,6 +50,7 @@ df
 # In[19]:
 
 
+# grouping by ID column to see if there's any overlapping customers in the dataset 
 df2 = df.groupby("ID").sum().sort_values("Income",ascending=False)
 df2
 
@@ -54,6 +58,8 @@ df2
 # In[20]:
 
 
+# Create a feature out of Dt_Customer that indicates the range of days a customer is enrolled in the firm's dataset
+# In order to get the values I must check the newest and oldest recorded dates.
 df3 = df.copy()
 cust = pd.to_datetime(df3.loc[:,"Dt_Customer"])
 dates = []
@@ -67,7 +73,7 @@ print("The oldest customer's shopping date:", min(dates))
 # In[21]:
 
 
-#Created a feature "Customer_For"
+#Create a feature "Customer_For" that indicates the number of days the customer shopped relative to the newest recorded date
 days = []
 max_dates = max(dates)
 for i in dates:
@@ -129,12 +135,14 @@ df3
 # In[24]:
 
 
+# Display the general statistics for all features 
 df3.describe()
 
 
 # In[33]:
 
 
+# Create pair plot graphs that display relationship among Income, Recemcy. Customer_For, Age, Spent features  
 sns.set(style='whitegrid', context='notebook')
 cols = ["Income", "Recency", "Customer_For", "Age", "Spent", "IsParent"]
 print("Reletive Plot Of Some Selected Features: A Data Subset")
@@ -146,7 +154,7 @@ plt.show()
 # In[41]:
 
 
-# Removing outliers 
+# Remove outliers for Income and Age features 
 cond = df3.loc[:,"Income"] < 600000
 df3 = df3.loc[cond]
 
@@ -158,6 +166,7 @@ print("Total length of dataset after removing outliers:", len(df3))
 # In[42]:
 
 
+# Display pair plot graphs after removing outliers
 sns.set(style='whitegrid', context='notebook')
 cols = ["Income", "Recency", "Customer_For", "Age", "Spent", "IsParent"]
 print("Reletive Plot Of Some Selected Features: A Data Subset")
