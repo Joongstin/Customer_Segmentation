@@ -3,24 +3,22 @@
 
 # In[172]:
 
-
-from sklearn import datasets
-from sklearn import model_selection
-from sklearn import linear_model
-from sklearn import metrics
-from sklearn import tree
-from sklearn import neighbors
-from sklearn import svm
-from sklearn import ensemble
-from sklearn import cluster
-from sklearn.metrics import accuracy_score
-import pandas as pd
 import numpy as np
-
+import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import colors
 import seaborn as sns
-
-np.random.seed(555)
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from yellowbrick.cluster import KElbowVisualizer
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt, numpy as np
+import warnings
+import sys
+if not sys.warnoptions:
+    warnings.simplefilter("ignore")
+np.random.seed(55)
 
 
 # In[173]:
