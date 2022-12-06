@@ -245,7 +245,6 @@ def Purchases_per_campaign(columns_name):
     dp3=pd.DataFrame(df3.groupby(['AcceptedCmp3']).mean()[columns_name]).T
     dp4=pd.DataFrame(df3.groupby(['AcceptedCmp4']).mean()[columns_name]).T
     dp5=pd.DataFrame(df3.groupby(['AcceptedCmp5']).mean()[columns_name]).T
-    # dp6=pd.DataFrame(df.groupby(['AcceptedCmp6']).mean()[columns_name]).T
     pd.concat([dp1,dp2,dp3,dp4,dp5],axis=0).set_index([Camp_cols]).plot(kind='line', figsize=(8,8))
     plt.ylabel('Average' + ' ' + columns_name)
     plt.show()
